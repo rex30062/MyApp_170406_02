@@ -3,6 +3,7 @@ package com.cclz.myapp_170406_02;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
@@ -10,9 +11,18 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView.Adapter<MyAdapter.ViewHolder> mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
     private Context context;
+    String data[]={"AAA", "BBBB", "CC", "DDDDD", "E"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context=this;
+        mRecyclerView=(RecyclerView)findViewById(R.id.my_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager=new LinearLayoutManager(context);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter=new MyAdapter(context, data);
+        mRecyclerView.setAdapter(mAdapter);
+
     }
 }
